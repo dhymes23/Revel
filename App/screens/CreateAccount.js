@@ -5,22 +5,9 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  TextInput,
 } from "react-native";
-
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Create Username:</Text>
-      <TextInput/>
-      <Text>Enter Passwaord:</Text>
-      <TextInput/>
-      <Text>Re-Enter Password</Text>
-      <TextInput/>
-      <Button>Submit:</Button>
-    </View>
-  );
-}
 
 const styles = StyleSheet.create({
   container: {
@@ -47,7 +34,7 @@ const styles = StyleSheet.create({
     height: 50,
     textAlign: "center"
   },
-  buttonText: {
+  buttonText: { 
     color: "#303030",
     fontSize: 30,
     fontWeight: "700"
@@ -56,6 +43,30 @@ const styles = StyleSheet.create({
 
 export default ({ navigation }) => (
   <View style={styles.container}>
+    <View>
+    <Text style = {{fontWeight:"bold",fontSize:35,padding:20,fontFamily:'HelveticaNeue-Italic',color:'#3bde26'}}>Create Account</Text>
+    <Text style = {{fontWeight:"bold",fontSize:20}}>Name:</Text>
+    <View style = {{backgroundColor:'#3bde26',height:35}}>
+    <TextInput/>
+    </View>
+    <Text style = {{fontWeight:"bold",fontSize:20}}>E-mail:</Text>
+    <View style = {{backgroundColor:'#3bde26',height:35}}>
+    <TextInput/>
+    </View>
+    <Text style = {{fontWeight:"bold",fontSize:20}}>Username:(mimimum 8 characters)</Text>
+    <View style = {{backgroundColor:'#3bde26',height:35}}>
+    <TextInput/>
+    </View>
+    <Text style = {{fontWeight:"bold",fontSize:20}}>Password:</Text>
+    <View style = {{backgroundColor:'#3bde26',height:35}}>
+    <TextInput/>
+    </View>
+    <Text style = {{fontWeight:"bold",fontSize:20}}>Re-Enter Password:</Text>
+    <View style = {{backgroundColor:'#3bde26',height:35}}>
+    <TextInput/>
+    </View>
+    </View>
+    <View>
     <StatusBar barStyle="light-content" />
     <TouchableOpacity
       onPress={() => navigation.navigate("MainMenu")}
@@ -63,5 +74,22 @@ export default ({ navigation }) => (
     >
       <Text style={styles.buttonText}>Back</Text>
     </TouchableOpacity>
+    </View>
   </View>
 );
+
+function accountAuthentify(userName, Password,email){
+  userNameContiansnum = false;
+  userNamecharCount = false; 
+  if(userName.length() >= 8){
+    userNamecharCount = true;
+  for(i = 0; i <= userName.length(); i++ ){
+      if(typeof userName.charAt(i) == "number"){
+        userNameAuth = true; 
+      }
+    }
+    // Write Code to check is user name is in the database already
+    // Write Code to check if email is in the Database
+  }
+}
+
