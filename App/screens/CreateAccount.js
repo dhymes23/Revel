@@ -1,4 +1,6 @@
 // Screen for creating an account
+
+
 import React from "react";
 import {
   View,
@@ -8,6 +10,8 @@ import {
   StatusBar,
   TextInput,
 } from "react-native";
+
+
 
 const styles = StyleSheet.create({
   container: {
@@ -41,7 +45,18 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ({ navigation }) => (
+class CreateAccount extends React.Component{
+
+state = {
+  userName: "",
+  Password: "",
+  Password2:"",
+  Email: "",
+  Name: ""
+};
+ 
+  render(){
+    return(
   <View style={styles.container}>
     <View>
     <Text style = {{fontWeight:"bold",fontSize:35,padding:20,fontFamily:'HelveticaNeue-Italic',color:'#3bde26'}}>Create Account</Text>
@@ -51,20 +66,34 @@ export default ({ navigation }) => (
     </View>
     <Text style = {{fontWeight:"bold",fontSize:20}}>E-mail:</Text>
     <View style = {{backgroundColor:'#3bde26',height:35}}>
-    <TextInput/>
+    <TextInput onChangeText={(Email)=> this.setState({Email})}
+                value = {this.state.Email}
+                />
     </View>
-    <Text style = {{fontWeight:"bold",fontSize:20}}>Username:(mimimum 8 characters)</Text>
+    <Text style = {{fontWeight:"bold",fontSize:20}}>Username:(mimimum 6 characters)</Text>
     <View style = {{backgroundColor:'#3bde26',height:35}}>
-    <TextInput/>
+    <TextInput onChangeText={(userName)=> this.setState({userName})}  
+                value = {this.state.userName}/>
     </View>
     <Text style = {{fontWeight:"bold",fontSize:20}}>Password:</Text>
     <View style = {{backgroundColor:'#3bde26',height:35}}>
-    <TextInput/>
+    <TextInput onChangeText = {Password => this.setState({Password})}
+               value = {this.state.Password}/>
     </View>
     <Text style = {{fontWeight:"bold",fontSize:20}}>Re-Enter Password:</Text>
-    <View style = {{backgroundColor:'#3bde26',height:35}}>
-    <TextInput/>
+    <View style = {{backgroundColor:'#3bde26',height:35,paddingBottom: 20}}>
+    <TextInput onChangeText ={Password2=>this.setState({Password2})} 
+                value = {this.state.Password2}/>
     </View>
+    </View>
+    <View>
+    <StatusBar barStyle="light-content" />
+    <TouchableOpacity style={styles.button} 
+       onPress= {() =>accountAuthentify(state.userName,state.Password,state.Password2,state.Email)}
+      >
+      <Text style={styles.buttonText}>Submit</Text>
+    </TouchableOpacity>
+      
     </View>
     <View>
     <StatusBar barStyle="light-content" />
@@ -76,19 +105,62 @@ export default ({ navigation }) => (
     </TouchableOpacity>
     </View>
   </View>
-);
-
-function accountAuthentify(userName, Password,email){
-  userNameContiansnum = false;
-  userNamecharCount = false; 
-  if(userName.length() >= 8){
-    userNamecharCount = true;
-  for(i = 0; i <= userName.length(); i++ ){
-      if(typeof userName.charAt(i) == "number"){
-        userNameAuth = true; 
-      }
-    }
-    // Write Code to check is user name is in the database already
-    // Write Code to check if email is in the Database
+    );
   }
 }
+
+function accountAuthentify(userName, p1,p2, email){
+    // userNameContiansnum = false;
+    // userNamecharCount = false; 
+    // psswrdMatch = false;
+    // Checks to see if user input matches authenticity requirements 
+    
+    var numCount = 0;
+    var authenticEntry = true;
+    if(userName.length < 6){
+      authenticEntry = false;
+    for(i = 0; i <= userName.length; i++ ){
+        if(typeof userName.charAt(i) == "number"){
+          numCount++;
+          if(numCount == 2){
+            break;
+          }else{
+            authenticEntry = false;
+          }
+        }
+      }
+    }
+      numCount = 0;
+      // Password Authentification 
+      if(p1 != p2){
+        authenticEntry = false;
+        if(p1.length < 8){
+          authenticEntry = false;
+          for(i = 0; i <= userName.length; i++ ){
+            if(typeof userName.charAt(i) == "number"){
+              numCount++;
+              if(numCount == 2){
+                break;
+              }else{
+                authenticEntry = false;
+              }
+            }
+          }
+        }
+        
+      }
+      
+      // Write Code to check is user name is in the database already
+      // Write Code to check if email is in the Database
+      
+      if(authenticEntry = true && userName != 'undefined'){
+        return userName,p1,p2,email;
+        // navigation.navigate("MainMenu");
+      }
+      else{
+            alert('Username must contain 8 charaters');
+      }
+    
+    }
+  
+export default CreateAccount;
