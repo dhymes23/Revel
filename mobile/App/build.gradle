@@ -1,0 +1,9 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
+dependencies {
+  // ...
+
+  implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
+  implementation 'com.google.firebase:firebase-ml-vision-barcode-model:16.0.1'
+}
