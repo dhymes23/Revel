@@ -135,7 +135,10 @@ state = {
                     />
   </View>
    </View>
-   <TouchableOpacity style = {styles.button} ><Text style = {{textAlign:"center", paddingTop:15,fontSize:30}}>Submit</Text></TouchableOpacity>
+   <TouchableOpacity style = {styles.button} 
+    onPress={() => {
+      alert('Your Info has been updated')
+    }}><Text style = {{textAlign:"center", paddingTop:15,fontSize:30}}>Submit</Text></TouchableOpacity>
    </View>
 
 
