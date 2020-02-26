@@ -6,7 +6,8 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  Image
 } from "react-native";
 
 const styles = StyleSheet.create({
@@ -37,18 +38,23 @@ const styles = StyleSheet.create({
   buttonText: {
     color: "#303030",
     fontSize: 30,
-    fontWeight: "700"
+    fontWeight: "700",
+    textAlign: "center"
   }
 });
 
 export default ({ navigation }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
+    <Text style={styles.buttonText}>
+      Here are the ingredients of the scanned item:
+    </Text>
+    <Image source={require("./image/test.png")} />
     <TouchableOpacity
       onPress={() => navigation.navigate("MainMenu")}
       style={styles.button}
     >
-      <Text style={styles.buttonText}>Back</Text>
+      <Text style={styles.buttonText}>MainMenu</Text>
     </TouchableOpacity>
   </View>
 );
