@@ -10,6 +10,7 @@
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
     "expo": "~36.0.0",
+    "expo-barcode-scanner": "~8.0.0",
     "ionic-native": "https://github.com/ionic-team/ionic-native/tarball/v3.5.0",
     "preact": "^10.2.1",
     "preact-compat": "^3.19.0",
@@ -28,8 +29,8 @@
     "scrollable": "^2.0.0"
   },
   "devDependencies": {
-    "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "@babel/core": "^7.0.0",
+    "babel-preset-expo": "~8.0.0"
   },
   "private": true
 }
