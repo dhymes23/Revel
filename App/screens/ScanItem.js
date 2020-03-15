@@ -50,4 +50,38 @@ export default function App({ navigation }) {
       )}
     </View>
   );
+      <html>
+
+    <script>
+        function getAPIdata() {
+            const proxyurl = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS error
+            const api_key = "gjrbqo5fx5he0qduwddhjn58vfpotr";
+            const url = proxyurl + "https://api.barcodelookup.com/v2/products?barcode=" + ${data} + "&formatted=y&key=" + api_key;
+            fetch(url)
+                    .then(response => response.json())
+                    .then((data) => {
+           		document.getElementById("BarcodeNumber").innerHTML = (data.products[0].barcode_number);
+			document.getElementById("ProductName").innerHTML = (data.products[0].product_name);
+			document.getElementById("EntireResponse").innerHTML = JSON.stringify(data, null,"<br/>");
+                    })
+                    
+                    .catch(err => { 
+                        throw err 
+                    });
+        }
+    </script>
+	
+    <body onload="getAPIdata()">
+	
+	<strong>Barcode Number: </strong> <div id="BarcodeNumber"></div><br/>
+		
+	<strong>Product Name: </strong> <div id="ProductName"></div><br/>
+	
+	<strong>Entire Response: </strong>
+		
+	<div id="EntireResponse"></div>
+	
+    </body>
+
+</html>
 }
