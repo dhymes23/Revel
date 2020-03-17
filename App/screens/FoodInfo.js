@@ -9,8 +9,9 @@ import {
   StatusBar,
   Image
 } from "react-native";
+import styled from 'styled-components'
 
-const container2=styled.View`
+const Container2 = styled.View`
     flex:1;
     border:1px solid #ccc;
     margin:2px 0;
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
 
 });
 var prodName;
+var 
 
 
 class FoodInfo extends React.Component{
@@ -71,14 +73,14 @@ class FoodInfo extends React.Component{
     <View style ={{alignContent:'stretch'}}>
       <Text style = {{fontWeight:'bold',fontSize:20,padding:25}}>Product:</Text>
     </View>
-    <container2>
+    <Container2>
       <Text>Ingredients & Info:</Text>
 
     
-    </container2>
+    </Container2>
     <TouchableOpacity
       onPress={() => navigation.navigate("MainMenu")}
-      style={styles.button}
+      style={styles.button} 
     >
       <Text style={styles.buttonText}>MainMenu</Text>
     </TouchableOpacity>
