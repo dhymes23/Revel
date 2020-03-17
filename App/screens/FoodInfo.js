@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
 export default ({ navigation }) => (
   <View style={styles.container}>
     <StatusBar barStyle="light-content" />
+    <Image source={require("./image/Key.png")} />
     <Text style={styles.buttonText}>
       Here are the ingredients of the scanned item:
     </Text>
