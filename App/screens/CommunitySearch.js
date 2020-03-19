@@ -1,53 +1,67 @@
 // Screen for searching through the community
-import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  StatusBar
-} from "react-native";
+import * as React from "react";
+import { View } from "react-native";
+import { Button, Paragraph, Menu, Provider } from "react-native-paper";
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    flex: 1,
-    paddingHorizontal: 20,
-    alignItems: "center"
-  },
-  text: {
-    color: "#303030",
-    fontSize: 30,
-    textAlign: "center",
-    letterSpacing: -0.02,
-    fontWeight: "600"
-  },
-  button: {
-    backgroundColor: "#3bde26",
-    borderColor: "#303030",
-    borderLeftColor: "#303030",
-    marginTop: 30,
-    alignItems: "center",
-    justifyContent: "center",
-    width: 250,
-    height: 50,
-    textAlign: "center"
-  },
-  buttonText: {
-    color: "#303030",
-    fontSize: 30,
-    fontWeight: "700"
+class CommunitySearch extends React.Component {
+  state = {
+    visible: false
+  };
+
+  _openMenu = () => this.setState({ visible: true });
+
+  _closeMenu = () => this.setState({ visible: false });
+
+  render() {
+    const { navigate } = this.props.navigation;
+
+    return (
+      <Provider>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "flex-end"
+          }}
+        >
+          <Menu
+            visible={this.state.visible}
+            onDismiss={this._closeMenu}
+            anchor={<Button onPress={this._openMenu}>Menu</Button>}
+          >
+            <Menu.Item
+              onPress={() => {
+                return navigate("ASP");
+              }}
+              title="ASP"
+            />
+            <Menu.Item
+              onPress={() => {
+                return navigate("CommunitySearch");
+              }}
+              title="Community"
+            />
+            <Menu.Item
+              onPress={() => {
+                return navigate("ScanItem");
+              }}
+              title="Scan Item"
+            />
+            <Menu.Item
+              onPress={() => {
+                return navigate("UserProfile");
+              }}
+              title="Profile"
+            />
+            <Menu.Item
+              onPress={() => {
+                return navigate("UserLogin");
+              }}
+              title="Sign Out"
+            />
+          </Menu>
+        </View>
+      </Provider>
+    );
   }
-});
-
-export default ({ navigation }) => (
-  <View style={styles.container}>
-    <StatusBar barStyle="light-content" />
-    <TouchableOpacity
-      onPress={() => navigation.navigate("MainMenu")}
-      style={styles.button}
-    >
-      <Text style={styles.buttonText}>Back</Text>
-    </TouchableOpacity>
-  </View>
-);
+}
+export default CommunitySearch;
