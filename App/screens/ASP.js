@@ -114,7 +114,7 @@ state = {
                     backgroundColor : '#3bde26',
                     marginRight:15,
                     marginTop :20}}>
-    <ModalDropdown options = {['Penut','Seafood','Gluten','Dairy',
+    <ModalDropdown options = {['Peanut','Seafood','Gluten','Dairy',
                                 'Sugar','Soybean','Egg','Wheat','Tree Nut','Potato Starch','Corn','Red Meat']} defaultValue = "Select Ingredient" textStyle= {{fontSize:18}} 
                                 dropdownStyle ={{width:150}} 
                                 dropdownTextStyle = {{fontSize:14}} 
