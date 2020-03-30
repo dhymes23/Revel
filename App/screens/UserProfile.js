@@ -1,53 +1,80 @@
-// Screen for the user profile
 import React from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  StatusBar
-} from "react-native";
+import { FlatList, Text, View } from "react-native";
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: "#fff",
-    flex: 1,
-    paddingHorizontal: 20,
-    alignItems: "center"
-  },
-  text: {
-    color: "#303030",
-    fontSize: 30,
-    textAlign: "center",
-    letterSpacing: -0.02,
-    fontWeight: "600"
-  },
-  button: {
-    backgroundColor: "#3bde26",
-    borderColor: "#303030",
-    borderLeftColor: "#303030",
-    marginTop: 30,
-    alignItems: "center",
-    justifyContent: "center",
-    width: 250,
-    height: 50,
-    textAlign: "center"
-  },
-  buttonText: {
-    color: "#303030",
-    fontSize: 30,
-    fontWeight: "700"
-  }
-});
+import { SearchBar } from "../components/SearchBar";
+import { SearchItem } from "../components/List";
+import { getIngredients } from "../util/LocalStorage";
+import { addIngredients } from "../util/LocalStorage";
 
-export default ({ navigation }) => (
-  <View style={styles.container}>
-    <StatusBar barStyle="light-content" />
-    <TouchableOpacity
-      onPress={() => navigation.navigate("MainMenu")}
-      style={styles.button}
-    >
-      <Text style={styles.buttonText}>Back</Text>
-    </TouchableOpacity>
-  </View>
-);
+
+// ///////////////////////////////////////////////////////////////////
+// React class is created because we need access to state and will
+// have dynamic data.
+// ///////////////////////////////////////////////////////////////////
+
+class UserProfile extends React.Component {
+    // State (a React thing) - essentially the "instance variables" of this class
+    state = {
+        ingredients: "",
+        ingredientsList: []
+    };
+
+    // React lifecycle method (override) for when screen is being mounted or updated
+    // This method is calling the getIngredients() method to load recent search items
+    // (from the phone's storage) into this screen's state
+    componentDidMount() {
+        getIngredients().then(ingredientsList => {
+            this.setState({ ingredientsList });
+        });
+    }
+
+    storeIngredients = () =>
+       addIngredients({
+           ingredients:this.state.ingredients
+       });
+
+       // props.navigation.navigate("MainMenu");
+
+
+    // React lifecycle method (override) for when screen is being mounted or updated
+    render() {
+        // The actual JSX to return/display
+        return (
+            // "item" refers to each item in this.state.ingredientsList array []
+            <FlatList
+                data={this.state.ingredientsList}
+                renderItem={({ item }) => (
+                    <SearchItem
+                        name={item.ingredients}
+                    />
+                )}
+                keyExtractor={item => item.ingredients.toString()}
+                // The header of each component is composed of the search bar and
+                // the word "Recents"....THEN follows each item below
+                ListHeaderComponent={(
+                    <View>
+                        <SearchBar
+                            onSearch={() => this.storeIngredients()}
+                            searchButtonEnabled={this.state.ingredients.length >= 1}
+                            placeholder="Enter ingredients"
+                            onChangeText={ingredients => this.setState({ ingredients })}
+                        />
+                        <Text
+                            style={{
+                                marginHorizontal: 10,
+                                fontSize: 16,
+                                color: "#aaa",
+                                marginTop: 10,
+                                marginBottom: 5
+                            }}
+                        >
+                            Blacklisted Ingredients
+                        </Text>
+                    </View>
+                )}
+            />
+        );
+    }
+}
+
+export default UserProfile;

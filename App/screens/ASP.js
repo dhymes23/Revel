@@ -8,8 +8,7 @@ import {
   TouchableOpacity,
   StatusBar,
   Picker,
-  TextInput,
-  Alert
+  TextInput
 } from "react-native";
 import ModalDropdown from 'react-native-modal-dropdown';
 
@@ -74,21 +73,6 @@ class ASP extends React.Component{
 //       this.setState({SAP:SAP})
 
 state = {
-  AllergyOptions:[
-    'Sugar',
-    'Soybean',
-    'Egg','Wheat',
-    'Tree Nut',
-    'Potato Starch',
-    'Corn',
-    'Red Meat',
-  ],
-
-  Asp:[
-    'Sensivity',
-    'Allergy',
-  ],
-
   text1: '',
   text2: '',
   SAP: '',
@@ -97,19 +81,7 @@ state = {
   
 
    render(){
-    sendData = () =>{
-      // Store data from dropdown to be sent to the database 
-      // iData = ingredeint data 
-      // asData 
-      iData = this.state.text1;
-      asData = this.state.text2;
-      
-      exports.iData = iData;
-      exports.asData = asData;
     
-      }
-    
-
    return(
 //   <View style={styles.container}>
 //     <View >
@@ -130,13 +102,9 @@ state = {
 //     </TouchableOpacity>
 //     </View>
 //   </View>
-
-
-
-
 <View style ={styles.container}>
     <View>
-      <Text style = {{fontWeight:"bold",fontSize:35,padding:20,fontFamily:'HelveticaNeue-Italic',color:'#3bde26', alignSelf:"stretch"}}style = {{fontWeight:"bold",fontSize:35,padding:20,fontFamily:'HelveticaNeue-Italic',color:'#3bde26', alignSelf:"stretch"}}>Revel ASP</Text>
+      <Text style = {{fontWeight:"bold",fontSize:35,padding:20,fontFamily:'HelveticaNeue-Italic',color:'#3bde26', alignSelf:"stretch"}}>Revel ASP</Text>
     </View>
     <View style ={styles.container2}>
     <View style = {{justifyContent:'flex-start',padding:10,
@@ -146,13 +114,10 @@ state = {
                     backgroundColor : '#3bde26',
                     marginRight:15,
                     marginTop :20}}>
-    <ModalDropdown options = {AllergyOptions}
-    // {['Penut','Seafood','Gluten','Dairy',
-    //                             'Sugar','Soybean','Egg','Wheat','Tree Nut','Potato Starch','Corn','Red Meat']} 
-                                defaultValue = "Select Ingredient" textStyle= {{fontSize:18}} 
+    <ModalDropdown options = {['Peanut','Seafood','Gluten','Dairy',
+                                'Sugar','Soybean','Egg','Wheat','Tree Nut','Potato Starch','Corn','Red Meat']} defaultValue = "Select Ingredient" textStyle= {{fontSize:18}} 
                                 dropdownStyle ={{width:150}} 
                                 dropdownTextStyle = {{fontSize:14}} 
-                                onSelect = {(value) => this.setState({text1: (String(this.state.AllergyOptions[value]))})}
                                  />
     </View>
     <View style = {{justifyContent:"flex-end",paddingBottom:10, 
@@ -163,27 +128,18 @@ state = {
                     marginTop:20,
                     marginLeft :15,
                     alignItems:"center"}}>
-    <ModalDropdown options = {Sap}
-      //  ['Sensivity','Allergy']
+    <ModalDropdown options = {['Sensivity','Allergy']} 
                    showsVerticalScrollIndicator={true} defaultValue = 'Category'  textStyle= {{fontSize:18}} 
                    dropdownStyle ={{width:100,alignItems:'center'}}
                    dropdownTextStyle = {{fontSize:14}} 
-                   onSelect = {(value) => this.setState({text2: (String(this.state.AllergyOptions[value]))})}
                     />
   </View>
    </View>
-   <TouchableOpacity style = {styles.button} 
-    onPress={() => {
-      {this.sendData}
-      
-    }}><Text style = {{textAlign:"center", paddingTop:15,fontSize:30}}>Submit</Text></TouchableOpacity>
+   <TouchableOpacity style = {styles.button} ><Text style = {{textAlign:"center", paddingTop:15,fontSize:30}}>Submit</Text></TouchableOpacity>
    </View>
 
 
   );
-  
-
-     
   }
 }
 
@@ -191,6 +147,4 @@ state = {
 // export default ({ navigation }) => (
   
 // );
-
-
 export default ASP

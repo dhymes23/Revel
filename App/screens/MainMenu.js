@@ -6,15 +6,20 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
-  StatusBar
+  StatusBar,
+  ScrollView
 } from "react-native";
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
     flex: 1,
-    paddingHorizontal: 20,
-    alignItems: "center"
+    alignItems: "center",
+    alignSelf: 'stretch',
+  },
+  scrollview: {
+    backgroundColor: "#fff",
+    alignSelf: 'stretch',
   },
   text: {
     color: "#303030",
@@ -30,7 +35,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     alignItems: "center",
     justifyContent: "center",
-    width: 250,
+    width: 290,
     height: 50,
     textAlign: "center"
   },
@@ -42,7 +47,9 @@ const styles = StyleSheet.create({
 });
 
 export default ({ navigation }) => (
+  <ScrollView style={styles.scrollview}>
   <View style={styles.container}>
+
     <StatusBar barStyle="light-content" />
     <Text style={styles.text}>Main Menu</Text>
     <TouchableOpacity
@@ -93,5 +100,7 @@ export default ({ navigation }) => (
     >
       <Text style={styles.buttonText}>UserProfile</Text>
     </TouchableOpacity>
-  </View>
+    </View>
+
+    </ScrollView>
 );
