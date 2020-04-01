@@ -8,6 +8,16 @@ import {
   StatusBar
 } from "react-native";
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://revel:<password>@cluster0-uskrk.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("userbase").collection("userprofile");
+  // perform actions on the collection object
+  // information for the user to put into their profile
+  client.close();
+});
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",

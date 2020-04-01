@@ -15,6 +15,15 @@ import {
   TextInput,
 } from "react-native";
 
+const MongoClient = require('mongodb').MongoClient;
+const uri = "mongodb+srv://revel:<20252025>@cluster0-uskrk.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true });
+client.connect(err => {
+  const collection = client.db("userbase").collection("userbase");
+  // perform actions on the collection object
+  client.close();
+});
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
