@@ -12,8 +12,17 @@ import UserLogin from "./screens/UserLogin";
 import UserProfile from "./screens/UserProfile";
 
 const MainStack = createStackNavigator({
+  UserLogin: {
+    screen: UserLogin,
+    navigationOptions: {
+      headerTitle: "UserLogin"
+    }
+  },
   MainMenu: {
-    screen: MainMenu
+    screen: MainMenu,
+    navigationOptions: {
+      headerTitle: "MainMenu"
+    }
   },
   ASP: {
     screen: ASP,
@@ -51,12 +60,7 @@ const MainStack = createStackNavigator({
       headerTitle: "ScanItem"
     }
   },
-  UserLogin: {
-    screen: UserLogin,
-    navigationOptions: {
-      headerTitle: "UserLogin"
-    }
-  },
+
   UserProfile: {
     screen: UserProfile,
     navigationOptions: {
