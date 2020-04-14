@@ -99,7 +99,8 @@ class UserLogin extends React.Component{
                           onPress = {() => this.checkLogin(this.state.userName,this.state.Password)} >
         <Text style = {styles.buttonText}>Log In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style = {styles.button2}>
+        <TouchableOpacity style = {styles.button2}
+                            onPress ={() =>this.props.navigation.navigate("CreateAccount") }>
         <Text style = {styles.buttonText}>Sign Up</Text>
         </TouchableOpacity>
         
