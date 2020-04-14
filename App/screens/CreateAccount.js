@@ -72,17 +72,50 @@ handleName = (text) => {
 }
 
 logInfo = (userName,Password,Password2,Email) => {
- 
- var uCheck = true;
- var pcheck = true;
+var uCheck = true;
+var pCheck = true;
 
- 
-
- 
-
-  
+ if(userName.length <= 9 && userName == null){
+   uCheck = false;
+ }else{
+   uCheck = true;
+ }
+   uNumCount = 0; 
+   pNumCount = 0;
+  for(i = 0; i <= userName.length; i++){
+   if(typeof userName.charAt(i) == "number"){
+      uNumCount++
+    if(uNumCount <= 2){
+      uCheck = false;
+    }
+    else{
+      uCheck = true;
+    }
+  }
 }
- 
+  if(Password == null && Password2 == null){
+    pCheck == false;
+  }
+  if(Password != Password2 ){
+    pCheck = false;
+  }
+  if(Password.length <= 8){
+    pCheck = false;
+  }
+  for(i = 0; i < Password.length; i++){
+    if(typeof userName.charAt(i) == "number"){
+      pNumCount++;
+     }
+    
+  }
+
+if(uCheck == true && pCheck == true ){
+  alert('Account Created')
+}
+else{
+  alert('Check the following')
+}
+}
   render(){
     return(
   <View style={styles.container}>
@@ -136,58 +169,58 @@ logInfo = (userName,Password,Password2,Email) => {
   }
 }
 
-function accountAuthentify(userName, p1,p2, email){
-    // userNameContiansnum = false;
-    // userNamecharCount = false; 
-    // psswrdMatch = false;
-    // Checks to see if user input matches authenticity requirements 
+// function accountAuthentify(userName, p1,p2, email){
+//     // userNameContiansnum = false;
+//     // userNamecharCount = false; 
+//     // psswrdMatch = false;
+//     // Checks to see if user input matches authenticity requirements 
     
-    var numCount = 0;
-    var authenticEntry = true;
-    if(userName.length < 6){
-      authenticEntry = false;
-    for(i = 0; i <= userName.length; i++ ){
-        if(typeof userName.charAt(i) == "number"){
-          numCount++;
-          if(numCount == 2){
-            break;
-          }else{
-            authenticEntry = false;
-          }
-        }
-      }
-    }
-      numCount = 0;
-      // Password Authentification 
-      if(p1 != p2){
-        authenticEntry = false;
-        if(p1.length < 8){
-          authenticEntry = false;
-          for(i = 0; i <= userName.length; i++ ){
-            if(typeof userName.charAt(i) == "number"){
-              numCount++;
-              if(numCount == 2){
-                break;
-              }else{
-                authenticEntry = false;
-              }
-            }
-          }
-        }
+//     var numCount = 0;
+//     var authenticEntry = true;
+//     if(userName.length < 6){
+//       authenticEntry = false;
+//     for(i = 0; i <= userName.length; i++ ){
+//         if(typeof userName.charAt(i) == "number"){
+//           numCount++;
+//           if(numCount == 2){
+//             break;
+//           }else{
+//             authenticEntry = false;
+//           }
+//         }
+//       }
+//     }
+//       numCount = 0;
+//       // Password Authentification 
+//       if(p1 != p2){
+//         authenticEntry = false;
+//         if(p1.length < 8){
+//           authenticEntry = false;
+//           for(i = 0; i <= userName.length; i++ ){
+//             if(typeof userName.charAt(i) == "number"){
+//               numCount++;
+//               if(numCount == 2){
+//                 break;
+//               }else{
+//                 authenticEntry = false;
+//               }
+//             }
+//           }
+//         }
         
-      }
+//       }
       
-      // Write Code to check is user name is in the database already
-      // Write Code to check if email is in the Database
+//       // Write Code to check is user name is in the database already
+//       // Write Code to check if email is in the Database
       
-      if(authenticEntry = true && userName != 'undefined'){
-        return userName,p1,p2,email;
-        // navigation.navigate("MainMenu");
-      }
-      else{
-            alert('Must change the following');
-      }
+//       if(authenticEntry = true && userName != 'undefined'){
+//         return userName,p1,p2,email;
+//         // navigation.navigate("MainMenu");
+//       }
+//       else{
+//             alert('Must change the following');
+//       }
     
-    }
+//     }
   
 export default CreateAccount;
