@@ -7,7 +7,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   StatusBar,
-  ScrollView
+  ScrollView,
+  Image
 } from "react-native";
 import { Button, Paragraph, Menu, Provider } from "react-native-paper";
 
@@ -17,6 +18,10 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     alignSelf: "stretch"
+  },
+  image: {
+    width: 400,
+    height: 400
   },
   scrollview: {
     backgroundColor: "#fff",
@@ -37,7 +42,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     width: 290,
-    height: 50,
+    height: 100,
+    borderRadius: 40,
     textAlign: "center"
   },
   buttonText: {
@@ -83,25 +89,13 @@ class MainMenu extends React.Component {
                 onPress={() => {
                   return navigate("ASP");
                 }}
-                title="ASP"
-              />
-              <Menu.Item
-                onPress={() => {
-                  return navigate("CommunitySearch");
-                }}
-                title="Community"
+                title="Preferences"
               />
               <Menu.Item
                 onPress={() => {
                   return navigate("ScanItem");
                 }}
                 title="Scan Item"
-              />
-              <Menu.Item
-                onPress={() => {
-                  return navigate("UserProfile");
-                }}
-                title="Profile"
               />
               <Menu.Item
                 onPress={() => {
@@ -112,36 +106,16 @@ class MainMenu extends React.Component {
             </Menu>
           </View>
           <View style={styles.container}>
+            <Image
+              style={styles.image}
+              source={require("./image/REvel.png")}
+            ></Image>
             <StatusBar barStyle="light-content" />
-            <Text
-              style={{
-                color: "#3bde26",
-                fontWeight: "bold",
-                textAlign: "center",
-                fontSize: 60,
-                paddingBottom: 30,
-                fontFamily: "HelveticaNeue-Italic"
-              }}
-            >
-              Revel
-            </Text>
-            <TouchableOpacity
-              onPress={() => navigate("FoodInfo")}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>FoodInfo</Text>
-            </TouchableOpacity>
             <TouchableOpacity
               onPress={() => navigate("ScanItem")}
               style={styles.button}
             >
-              <Text style={styles.buttonText}>ScanItem</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => navigate("UserProfile")}
-              style={styles.button}
-            >
-              <Text style={styles.buttonText}>UserProfile</Text>
+              <Text style={styles.buttonText}>Scan An Item</Text>
             </TouchableOpacity>
           </View>
         </Provider>

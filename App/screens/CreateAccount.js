@@ -105,6 +105,7 @@ export default ({ navigation }) => (
     <View>
       <Text
         style={{
+          textAlign: "center",
           fontWeight: "bold",
           fontSize: 35,
           padding: 20,
@@ -112,7 +113,7 @@ export default ({ navigation }) => (
           color: "#3bde26"
         }}
       >
-        Create Account
+        Create Your Revel Account
       </Text>
       <Text style={{ fontWeight: "bold", fontSize: 20 }}>Name:</Text>
       <View style={{ backgroundColor: "#3bde26", height: 35 }}>

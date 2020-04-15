@@ -8,40 +8,46 @@ import {
   TouchableOpacity,
   StatusBar,
   Image,
-  ScrollView,Dimensions
-
+  ScrollView,
+  Dimensions
 } from "react-native";
 import styled from "styled-components";
 import { Button, Paragraph, Menu, Provider } from "react-native-paper";
 
 const Container2 = styled.View`
-flex: 1;
-border: 1px solid #ccc;
-margin: 2px 0;
-border-radius: 10px;
-box-shadow: 0 0 10px #ccc;
-background-color: #fff;
-width: 80%;
-padding: 10px;
+  flex: 1;
+  border: 1px solid #ccc;
+  margin: 2px 0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px #ccc;
+  background-color: #fff;
+  width: 80%;
+  padding: 10px;
 `;
-const screenHeight = Dimensions.get('window').height
+const screenHeight = Dimensions.get("window").height;
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#fff",
-    height:screenHeight
-
+    height: screenHeight
   },
-  view:{
-    flexDirection:"column",
-    alignItems:'center'
+  buttonContainer: {
+    //flex: 1,
+    backgroundColor: "#fff",
+    marginTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-between"
+  },
+  view: {
+    flexDirection: "column",
+    alignItems: "center"
   },
   text: {
     color: "#303030",
     fontSize: 14,
     textAlign: "center",
     paddingVertical: 20,
-    letterSpacing: -0.02,
+    letterSpacing: -0.02
   },
   textBold: {
     color: "#303030",
@@ -49,21 +55,25 @@ const styles = StyleSheet.create({
     textAlign: "left",
     paddingVertical: 5,
     letterSpacing: -0.02,
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
   button: {
-    height: 60,
+    flex: 1,
+    height: 50,
     width: 160,
     borderRadius: 10,
     backgroundColor: "#3bde26",
     marginRight: 15,
-    marginTop: 100,
+    marginLeft: 15,
+    justifyContent: "center",
+    //marginTop: 100,
     alignSelf: "center"
   },
   buttonText: {
     color: "#303030",
     fontSize: 30,
     fontWeight: "700",
+    justifyContent: "center",
     textAlign: "center"
   }
 });
@@ -73,10 +83,10 @@ var  */
 class FoodInfo extends React.Component {
   state = {
     visible: false,
-    name:"",
-    category:"",
-    ingredients:"",
-    hazardous:false
+    name: "",
+    category: "",
+    ingredients: "",
+    hazardous: false
   };
 
   _openMenu = () => this.setState({ visible: true });
@@ -100,104 +110,78 @@ class FoodInfo extends React.Component {
     //   ingredients:ingredients,
     //   hazardous:hazardous
     // })
-
   }
   render() {
     const { navigate } = this.props.navigation;
-    var  name  = this.props.navigation.getParam("name");
-    var  category  = this.props.navigation.getParam("category");
-    var  ingredients  = this.props.navigation.getParam("ingredients");
-    var  hazardous  = this.props.navigation.getParam("hazardous");
+    var name = this.props.navigation.getParam("name");
+    var category = this.props.navigation.getParam("category");
+    var ingredients = this.props.navigation.getParam("ingredients");
+    var hazardous = this.props.navigation.getParam("hazardous");
     console.log(ingredients);
-    if(hazardous == true){
-      alert(`"${name}" contains your blacklisted ingredients and is hazardous for you.`);
+    if (hazardous == true) {
+      alert(
+        `"${name}" contains your blacklisted ingredients and is hazardous for you.`
+      );
     }
     return (
-      <Provider>
-      <View
-      style={{
-        flexDirection: "row",
-        justifyContent: "flex-end",
-        backgroundColor: "#fff",
-      }}
-      >
-      <Menu
-      visible={this.state.visible}
-      onDismiss={this._closeMenu}
-      anchor={<Button onPress={this._openMenu}>Menu</Button>}
-      >
-      <Menu.Item
-      onPress={() => {
-        return navigate("ASP");
-      }}
-      title="ASP"
-      />
-      <Menu.Item
-      onPress={() => {
-        return navigate("CommunitySearch");
-      }}
-      title="Community"
-      />
-      <Menu.Item
-      onPress={() => {
-        return navigate("ScanItem");
-      }}
-      title="Scan Item"
-      />
-      <Menu.Item
-      onPress={() => {
-        return navigate("UserProfile");
-      }}
-      title="Profile"
-      />
-      <Menu.Item
-      onPress={() => {
-        return navigate("UserLogin");
-      }}
-      title="Sign Out"
-      />
-      </Menu>
-      </View>
-      <View style={styles.container}>
-      <StatusBar barStyle="light-content" />
-      <Text
-      style={{
-        fontWeight: "bold",
-        fontSize: 35,
-        padding: 20,
-        // fontFamily: "HelveticaNeue-Italic",
-        color: "#3bde26",
-        alignSelf: "center"
-      }}
-      >
-      Food Info
-      </Text>
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-      <View >
-      {name &&
-        <View style={styles.view}>
-        <Text style={styles.textBold}>Product Name:</Text>
-        <Text style={styles.text}> {name}</Text>
-        </View>}
+      <ScrollView style={styles.scrollview}>
+        <View style={styles.buttonContainer}>
+          <TouchableOpacity
+            onPress={() => navigate("CreatePost")}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Post</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => navigate("CommunitySearch")}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>View Posts</Text>
+          </TouchableOpacity>
+        </View>
 
-        {category &&
-          <View style={styles.view}>
-          <Text style={styles.textBold}>Category:</Text>
-          <Text style={styles.text}> {category}</Text>
-          </View>}
+        <View style={styles.container}>
+          <StatusBar barStyle="light-content" />
+          <Text
+            style={{
+              fontWeight: "bold",
+              fontSize: 35,
+              padding: 20,
+              // fontFamily: "HelveticaNeue-Italic",
+              color: "#3bde26",
+              alignSelf: "center"
+            }}
+          >
+            Food Information
+          </Text>
 
-          {ingredients !== undefined &&
-            <View style={styles.view}>
-            <Text style={styles.textBold}>Ingredients:</Text>
-            <Text style={styles.text}> {ingredients}</Text>
-            </View>}
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+            <View>
+              {name && (
+                <View style={styles.view}>
+                  <Text style={styles.textBold}>Product Name:</Text>
+                  <Text style={styles.text}> {name}</Text>
+                </View>
+              )}
+
+              {category && (
+                <View style={styles.view}>
+                  <Text style={styles.textBold}>Category:</Text>
+                  <Text style={styles.text}> {category}</Text>
+                </View>
+              )}
+
+              {ingredients !== undefined && (
+                <View style={styles.view}>
+                  <Text style={styles.textBold}>Ingredients:</Text>
+                  <Text style={styles.text}> {ingredients}</Text>
+                </View>
+              )}
             </View>
-            </ScrollView>
-
-
-            </View>
-            </Provider>
-          );
-        }
-      }
-      export default FoodInfo;
+          </ScrollView>
+        </View>
+      </ScrollView>
+    );
+  }
+}
+export default FoodInfo;
