@@ -10,61 +10,71 @@ import CreateAccount from "./screens/CreateAccount";
 import ScanItem from "./screens/ScanItem";
 import UserLogin from "./screens/UserLogin";
 import UserProfile from "./screens/UserProfile";
+import CreatePost from "./screens/CreatePost";
 
 const MainStack = createStackNavigator({
   UserLogin: {
     screen: UserLogin,
     navigationOptions: {
-      headerTitle: "UserLogin"
+      headerTitle: "User Login"
     }
   },
   MainMenu: {
     screen: MainMenu,
     navigationOptions: {
-      headerTitle: "MainMenu"
+      headerTitle: "Main Menu",
+      headerLeft: () => {
+        return null;
+      }
+    }
+  },
+  CreatePost: {
+    screen: CreatePost,
+    navigationOptions: {
+      headerTitle: "Create Post"
     }
   },
   ASP: {
     screen: ASP,
     navigationOptions: {
-      headerTitle: "ASP"
+      headerTitle: "Preferences"
     }
   },
   FoodInfo: {
     screen: FoodInfo,
     navigationOptions: {
-      headerTitle: "FoodInfo"
+      headerTitle: "Food Info"
     }
   },
   CommunityPost: {
     screen: CommunityPost,
     navigationOptions: {
-      headerTitle: "CommunityPost"
+      headerTitle: "Community Post"
     }
   },
   CommunitySearch: {
     screen: CommunitySearch,
     navigationOptions: {
-      headerTitle: "CommunitySearch"
+      headerTitle: "Community Posts"
     }
   },
   CreateAccount: {
     screen: CreateAccount,
     navigationOptions: {
-      headerTitle: "CreateAccount"
+      headerTitle: "Create Account"
     }
   },
   ScanItem: {
     screen: ScanItem,
     navigationOptions: {
-      headerTitle: "ScanItem"
+      headerTitle: "Scan Item"
     }
   },
 
   UserProfile: {
     screen: UserProfile,
     navigationOptions: {
-      headerTitle: "UserProfile"
+      headerTitle: "Preferences Search"
     }
   }
 });
