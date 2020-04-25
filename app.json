@@ -24,7 +24,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+    },
+    "android": {
+      "package": "com.Revel.Revel"
     }
   }
 }
