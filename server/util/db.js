@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 let isConnected;
 
-// Note: This should be stored in environment variables
+// Note: This should be stored in environment variable
 const DB_URL =
   "mongodb+srv://revel:20252025@cluster0-25k9p.mongodb.net/Reviewdb";
 
