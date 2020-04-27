@@ -4,7 +4,7 @@ import { handleBarCodeScanned } from "./screens/ScanItem";
 var ScanData = handleBarCodeScanned.data;
 function getAPIdata() {
   const proxyurl = "https://cors-anywhere.herokuapp.com/"; // Use a proxy to avoid CORS error
-  const api_key = "gjrbqo5fx5he0qduwddhjn58vfpotr";
+  const api_key = "4x1yqp3xzs8pkmv9jk7vt0f1foa10p";
   const url =
     proxyurl +
     "https://api.barcodelookup.com/v2/products?barcode=" +
